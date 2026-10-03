@@ -1,0 +1,476 @@
+# Oben Electric Warranty Policy — Bulletin OBEN/Service/2025/001 (15-May-25)
+#
+# Two policy eras (selected by vehicle sale date vs era_boundary):
+#   OLD — vehicles sold 01-Jul-23 to 30-Apr-25
+#   NEW — vehicles sold from 01-May-25 onward
+#
+# Five package tiers (dealer selects at claim time; default is OBEN-STD):
+#   OBEN-STD         Standard warranty
+#   OBEN-BATT-880    Battery Protect 8/80 (battery extended to 8Y/80000km)
+#   OBEN-BATT-560    Battery Protect 560  (battery extended to 5Y/60000km)
+#   OBEN-COMP-560    Comprehensive Protect+ 560 (battery+HMI+motor+dcdc+rims 5Y/60000km)
+#   OBEN-CHRG        Charger Protect (charger extended to 5Y/60000km)
+#
+# Component keys used in part_limits/old_part_limits must match the canonical
+# keys in engine/rules.py _COMPONENT_ALIASES.
+
+# ── OBEN-STD ─────────────────────────────────────────────────────────────────
+- code: OBEN-STD
+  version: "2025.1"
+  title: "Oben Electric Standard Warranty — May 2025"
+  era_boundary: "2025-05-01"
+
+  # Top-level fallback for any component not listed in part_limits.
+  coverage_years: 3
+  coverage_km: 40000
+  battery_coverage_years: 3
+  battery_coverage_km: 40000
+  battery_min_soh_pct: 70.0
+  service_schedule_required: true
+  max_service_overdue_days: 30
+
+  # NEW era limits (from 01-May-25) — per Annexure D new warranty table
+  part_limits:
+    battery:          {years: 3,   km: 40000}
+    motor:            {years: 3,   km: 40000}
+    hmi:              {years: 1,   km: 10000}
+    charger:          {years: 1,   km: 10000}
+    main-frame:       {years: 3,   km: 40000}
+    dcdc-converter:   {years: 1,   km: 10000}
+    motor-controller: {years: 3,   km: 40000}
+    front-fork:       {years: 1,   km: 10000}
+    drive-belt:       {years: 1,   km: 10000}
+    switches:         {months: 6,  km: 10000}
+    horn:             {months: 6,  km: 10000}
+    mono-shock:       {years: 1,   km: 10000}
+    wire-harness:     {years: 1,   km: 10000}
+    indicators:       {years: 1,   km: 10000}
+    front-rim:        {years: 3,   km: 40000}
+    rear-rim:         {years: 3,   km: 40000}
+
+  # OLD era limits (01-Jul-23 to 30-Apr-25) — per Annexure D old warranty table
+  old_part_limits:
+    battery:          {years: 3,   km: 50000}
+    motor:            {years: 3,   km: 50000}
+    hmi:              {years: 1,   km: 10000}
+    charger:          {years: 1,   km: 10000}
+    main-frame:       {years: 3,   km: 50000}
+    dcdc-converter:   {years: 1,   km: 10000}
+    motor-controller: {years: 1,   km: 10000}   # was 1Y in old table; upgraded to 3Y in new
+    front-fork:       {years: 1,   km: 10000}
+    drive-belt:       {years: 1,   km: 10000}
+    switches:         {months: 6,  km: 10000}
+    horn:             {months: 6,  km: 10000}
+    mono-shock:       {years: 1,   km: 10000}
+    wire-harness:     {years: 1,   km: 10000}
+    indicators:       {years: 1,   km: 10000}
+    front-rim:        {years: 1,   km: 10000}
+    rear-rim:         {years: 1,   km: 10000}
+
+  covered_components:
+    - battery
+    - bms
+    - motor
+    - hmi
+    - charger
+    - main frame
+    - dcdc converter
+    - motor controller
+    - inverter
+    - front fork
+    - drive belt
+    - switches
+    - horn
+    - mono shock
+    - wire harness
+    - indicators
+    - front rim
+    - rear rim
+    - throttle
+
+  excluded_components:
+    - tyres
+    - tyre
+    - brake pads
+    - brake pad
+    - brake fluid
+    - consumables
+    - paint
+    - upholstery
+    - seat
+    - mirror
+    - number plate
+
+  clauses:
+    "1.1": >-
+      Warranty covers defects arising from manufacturing or material defect by Oben
+      or its supplier, when the vehicle has been used and maintained as per the
+      owner's manual. If failure root cause is not established, a detailed technical
+      report (PFR, Why-Why analysis) must be submitted to HO.
+    "2.1": >-
+      The claimed component must be a listed covered component to be eligible for
+      warranty. Parts not listed as covered or excluded require HO discussion on a
+      case-by-case basis with a PFR.
+    "3.1": >-
+      Standard warranty coverage period and kilometre limit are as specified per
+      component in Annexure D. Coverage starts from vehicle sale date; whichever
+      limit (time or km) is reached first applies.
+    "3.2": >-
+      Battery State of Health (SoH) below 70% within the coverage period makes the
+      battery eligible for replacement. Claims above 70% SoH require further
+      investigation via BMS App, telematics, and charging behaviour analysis.
+    "4.1": >-
+      Parts with physical damage from mishandling (external damage) are not covered.
+      A job-card photograph of damage must be taken before any work begins.
+    "4.2": >-
+      Tampering, unauthorised repair, or modification of parts by persons other than
+      authorised Oben Care Centre staff voids warranty on the affected assembly.
+      Tool marks on fasteners, cut/joined wires, or rework evidence on circuit boards
+      are grounds for rejection.
+    "4.3": >-
+      Use of non-listed vendor (duplicate/local) parts is not covered. Confirm
+      part genuineness against the authorised vendor list before claiming.
+    "4.4": >-
+      Parts failure resulting from extreme riding conditions — stunts, overloading,
+      prolonged water/mud exposure, or use outside the intended purpose defined in
+      the Owner's Manual — is not covered. Customer riding habits to be discussed
+      and confirmed before acceptance.
+    "4.5": >-
+      Fitment of non-genuine accessories (extra horn, LED lights, USB sockets,
+      rear axle attachments etc.) that alter the electrical or mechanical system
+      voids warranty on components affected by such modifications. Warranty is
+      void until the accessory is removed.
+    "5.1": >-
+      Coverage is conditional on adherence to the prescribed service schedule.
+      Claims from vehicles with a lapsed service schedule (beyond 30-day grace)
+      may be rejected. Last scheduled service date must be verified in the job card.
+    "5.2": >-
+      Genuine parts must be used in all repairs under warranty. Use of aftermarket
+      or non-genuine replacement parts voids warranty on the affected component.
+    "6.1": >-
+      All warranty claims require: a completed job card with service date, sale
+      date, and odometer reading; a backup sheet approved by HOD; ASM sign-off;
+      and GST portal registration in the same month. Claims missing any of these
+      may be rejected at HO.
+    "6.2": >-
+      Before replacing a part, sufficient diagnosis must be performed and evidence
+      of the defect documented (video, photograph). A part replaced without
+      established root cause may be returned as 'Part Found OK' and the cost
+      reversed to the dealer.
+
+
+# ── OBEN-BATT-880 ────────────────────────────────────────────────────────────
+- code: OBEN-BATT-880
+  version: "2025.1"
+  title: "Oben Electric Battery Protect 8/80 Package"
+  era_boundary: ""        # new-era only package
+  coverage_years: 3
+  coverage_km: 40000
+  battery_coverage_years: 8
+  battery_coverage_km: 80000
+  battery_min_soh_pct: 70.0
+  service_schedule_required: true
+  max_service_overdue_days: 30
+
+  part_limits:
+    battery:          {years: 8,   km: 80000}   # extended
+    motor:            {years: 3,   km: 40000}
+    hmi:              {years: 1,   km: 10000}
+    charger:          {years: 1,   km: 10000}
+    main-frame:       {years: 3,   km: 40000}
+    dcdc-converter:   {years: 1,   km: 10000}
+    motor-controller: {years: 3,   km: 40000}
+    front-fork:       {years: 1,   km: 10000}
+    drive-belt:       {years: 1,   km: 10000}
+    switches:         {months: 6,  km: 10000}
+    horn:             {months: 6,  km: 10000}
+    mono-shock:       {years: 1,   km: 10000}
+    wire-harness:     {years: 1,   km: 10000}
+    indicators:       {years: 1,   km: 10000}
+    front-rim:        {years: 3,   km: 40000}
+    rear-rim:         {years: 3,   km: 40000}
+
+  old_part_limits: {}
+
+  covered_components:
+    - battery
+    - bms
+    - motor
+    - hmi
+    - charger
+    - main frame
+    - dcdc converter
+    - motor controller
+    - inverter
+    - front fork
+    - drive belt
+    - switches
+    - horn
+    - mono shock
+    - wire harness
+    - indicators
+    - front rim
+    - rear rim
+    - throttle
+
+  excluded_components:
+    - tyres
+    - tyre
+    - brake pads
+    - brake pad
+    - brake fluid
+    - consumables
+    - paint
+    - upholstery
+
+  clauses:
+    "1.1": >-
+      Oben Battery Protect 8/80: Traction battery covered for 8 years or
+      80,000 km from sale date, whichever occurs first. All other components
+      at STD warranty limits. Annexure A rejection criteria apply.
+    "3.1": >-
+      Coverage period and limits as specified in Annexure D, Battery Protect 8/80
+      column. Battery: 8 years or 80,000 km.
+    "3.2": >-
+      Battery SoH below 70% within coverage period is eligible for replacement.
+    "4.2": >-
+      Tampering, unauthorised modification or repair voids warranty on the
+      affected component.
+    "5.1": >-
+      Service schedule adherence required. Claims from vehicles with lapsed
+      service schedule may be rejected.
+
+
+# ── OBEN-BATT-560 ────────────────────────────────────────────────────────────
+- code: OBEN-BATT-560
+  version: "2025.1"
+  title: "Oben Electric Battery Protect 560 Package"
+  era_boundary: ""
+  coverage_years: 3
+  coverage_km: 40000
+  battery_coverage_years: 5
+  battery_coverage_km: 60000
+  battery_min_soh_pct: 70.0
+  service_schedule_required: true
+  max_service_overdue_days: 30
+
+  part_limits:
+    battery:          {years: 5,   km: 60000}   # extended
+    motor:            {years: 3,   km: 40000}
+    hmi:              {years: 1,   km: 10000}
+    charger:          {years: 1,   km: 10000}
+    main-frame:       {years: 3,   km: 40000}
+    dcdc-converter:   {years: 1,   km: 10000}
+    motor-controller: {years: 3,   km: 40000}
+    front-fork:       {years: 1,   km: 10000}
+    drive-belt:       {years: 1,   km: 10000}
+    switches:         {months: 6,  km: 10000}
+    horn:             {months: 6,  km: 10000}
+    mono-shock:       {years: 1,   km: 10000}
+    wire-harness:     {years: 1,   km: 10000}
+    indicators:       {years: 1,   km: 10000}
+    front-rim:        {years: 3,   km: 40000}
+    rear-rim:         {years: 3,   km: 40000}
+
+  old_part_limits: {}
+
+  covered_components:
+    - battery
+    - bms
+    - motor
+    - hmi
+    - charger
+    - main frame
+    - dcdc converter
+    - motor controller
+    - inverter
+    - front fork
+    - drive belt
+    - switches
+    - horn
+    - mono shock
+    - wire harness
+    - indicators
+    - front rim
+    - rear rim
+    - throttle
+
+  excluded_components:
+    - tyres
+    - tyre
+    - brake pads
+    - brake pad
+    - brake fluid
+    - consumables
+    - paint
+    - upholstery
+
+  clauses:
+    "1.1": >-
+      Oben Battery Protect 560: Traction battery covered for 5 years or 60,000 km
+      from sale date. All other components at STD warranty limits.
+    "3.1": >-
+      Battery: 5 years or 60,000 km. Other components as per Annexure D STD column.
+    "3.2": >-
+      Battery SoH below 70% within coverage period is eligible for replacement.
+    "4.2": >-
+      Tampering or unauthorised modification voids warranty on the affected component.
+    "5.1": >-
+      Service schedule adherence required.
+
+
+# ── OBEN-COMP-560 ────────────────────────────────────────────────────────────
+- code: OBEN-COMP-560
+  version: "2025.1"
+  title: "Oben Electric Comprehensive Protect+ 560 Package"
+  era_boundary: ""
+  coverage_years: 5
+  coverage_km: 60000
+  battery_coverage_years: 5
+  battery_coverage_km: 60000
+  battery_min_soh_pct: 70.0
+  service_schedule_required: true
+  max_service_overdue_days: 30
+
+  part_limits:
+    battery:          {years: 5,   km: 60000}   # extended
+    motor:            {years: 5,   km: 60000}   # extended
+    hmi:              {years: 5,   km: 60000}   # extended
+    charger:          {years: 1,   km: 10000}
+    main-frame:       {years: 3,   km: 40000}
+    dcdc-converter:   {years: 5,   km: 60000}   # extended
+    motor-controller: {years: 3,   km: 40000}
+    front-fork:       {years: 1,   km: 10000}
+    drive-belt:       {years: 1,   km: 10000}
+    switches:         {months: 6,  km: 10000}
+    horn:             {months: 6,  km: 10000}
+    mono-shock:       {years: 1,   km: 10000}
+    wire-harness:     {years: 1,   km: 10000}
+    indicators:       {years: 1,   km: 10000}
+    front-rim:        {years: 5,   km: 60000}   # extended
+    rear-rim:         {years: 5,   km: 60000}   # extended
+
+  old_part_limits: {}
+
+  covered_components:
+    - battery
+    - bms
+    - motor
+    - hmi
+    - charger
+    - main frame
+    - dcdc converter
+    - motor controller
+    - inverter
+    - front fork
+    - drive belt
+    - switches
+    - horn
+    - mono shock
+    - wire harness
+    - indicators
+    - front rim
+    - rear rim
+    - throttle
+
+  excluded_components:
+    - tyres
+    - tyre
+    - brake pads
+    - brake pad
+    - brake fluid
+    - consumables
+    - paint
+    - upholstery
+
+  clauses:
+    "1.1": >-
+      Oben Comprehensive Protect+ 560: Battery, Motor, HMI, DCDC Converter,
+      Front Rim and Rear Rim covered for 5 years or 60,000 km. Other components
+      at STD limits.
+    "3.1": >-
+      Extended components: 5Y/60000km. All others: as per Annexure D STD column.
+    "3.2": >-
+      Battery SoH below 70% within the extended coverage period is eligible for
+      replacement.
+    "4.2": >-
+      Tampering or unauthorised modification voids warranty on the affected assembly.
+    "5.1": >-
+      Service schedule adherence required throughout the extended coverage period.
+
+
+# ── OBEN-CHRG ────────────────────────────────────────────────────────────────
+- code: OBEN-CHRG
+  version: "2025.1"
+  title: "Oben Electric Charger Protect Package"
+  era_boundary: ""
+  coverage_years: 3
+  coverage_km: 40000
+  battery_coverage_years: 3
+  battery_coverage_km: 40000
+  battery_min_soh_pct: 70.0
+  service_schedule_required: true
+  max_service_overdue_days: 30
+
+  part_limits:
+    battery:          {years: 3,   km: 40000}
+    motor:            {years: 3,   km: 40000}
+    hmi:              {years: 1,   km: 10000}
+    charger:          {years: 5,   km: 60000}   # extended
+    main-frame:       {years: 3,   km: 40000}
+    dcdc-converter:   {years: 1,   km: 10000}
+    motor-controller: {years: 3,   km: 40000}
+    front-fork:       {years: 1,   km: 10000}
+    drive-belt:       {years: 1,   km: 10000}
+    switches:         {months: 6,  km: 10000}
+    horn:             {months: 6,  km: 10000}
+    mono-shock:       {years: 1,   km: 10000}
+    wire-harness:     {years: 1,   km: 10000}
+    indicators:       {years: 1,   km: 10000}
+    front-rim:        {years: 3,   km: 40000}
+    rear-rim:         {years: 3,   km: 40000}
+
+  old_part_limits: {}
+
+  covered_components:
+    - battery
+    - bms
+    - motor
+    - hmi
+    - charger
+    - main frame
+    - dcdc converter
+    - motor controller
+    - inverter
+    - front fork
+    - drive belt
+    - switches
+    - horn
+    - mono shock
+    - wire harness
+    - indicators
+    - front rim
+    - rear rim
+    - throttle
+
+  excluded_components:
+    - tyres
+    - tyre
+    - brake pads
+    - brake pad
+    - brake fluid
+    - consumables
+    - paint
+    - upholstery
+
+  clauses:
+    "1.1": >-
+      Oben Charger Protect: On-board charger covered for 5 years or 60,000 km.
+      All other components at STD warranty limits.
+    "3.1": >-
+      Charger: 5Y/60000km. Other components as per Annexure D STD column.
+    "4.2": >-
+      Tampering, external rework, or modification of the charger (including
+      non-authorised opening or splicing of charging wires) voids this coverage.
+    "5.1": >-
+      Service schedule adherence required.
