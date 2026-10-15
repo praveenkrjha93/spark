@@ -1,6 +1,6 @@
 """Uploads router: stage file attachments before claim submission.
 
-Files are stored under /tmp/spark_uploads (writable on Vercel serverless).
+Files are stored on disk under the `uploads/` directory at the project root.
 Each upload returns a reference ID that callers include in the claim's
 `attachments` list field.
 
@@ -14,8 +14,8 @@ from pathlib import Path
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 
-# /tmp is writable on Vercel serverless; fall back to a local path in dev.
-_UPLOADS_DIR = Path("/tmp/spark_uploads")
+_UPLOADS_DIR = Path(__file__).parents[3] / "uploads"
+_UPLOADS_DIR.mkdir(exist_ok=True)
 
 router = APIRouter(prefix="/uploads", tags=["uploads"])
 
@@ -27,7 +27,6 @@ async def upload_file(
     file: UploadFile = File(...),
     category: str = Form(default="general"),
 ) -> dict:
-    _UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
     content = await file.read()
     if len(content) > _MAX_SIZE:
         raise HTTPException(status_code=413, detail="File exceeds 100 MB limit")
