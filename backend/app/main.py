@@ -28,10 +28,10 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Dev CORS: allow the Vite dev server (and any localhost port) to call the API.
+# Allow localhost in dev and any Vercel deployment in prod.
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):\d+",
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?|https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

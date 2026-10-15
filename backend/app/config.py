@@ -33,8 +33,8 @@ class Settings(BaseSettings):
     confidence_review_threshold: float = 0.75
     auto_approve_threshold: float = 0.90
 
-    # Database
-    database_url: str = "sqlite:///./spark.db"
+    # Database — /tmp is writable on Vercel; default to local file in dev
+    database_url: str = "sqlite:////tmp/spark.db"
 
     @property
     def llm_enabled(self) -> bool:
