@@ -1,4 +1,3 @@
-```python
 """Uploads router: stage file attachments before claim submission.
 
 Files are temporarily stored under /tmp/spark_uploads by default.
@@ -69,4 +68,3 @@ def serve_file(file_id: str) -> FileResponse:
         path=str(path),
         filename=path.name.split("_", 1)[-1],
     )
-```
